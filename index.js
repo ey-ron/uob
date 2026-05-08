@@ -113,14 +113,14 @@ async function downloadStatement() {
   console.log(`File saved locally: ${localPath}`);
 
   // 8. Parsing logic for the downloaded XLS data
+  let transactions = [];
+  let cardName = "";
+
   try {
     console.log("\n=== STARTING PARSE ===");
     const buffer = fs.readFileSync(localPath);
     const workbook = XLSX.read(buffer, { type: 'buffer', cellDates: true });
     const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1 });
-    
-    let transactions = [];
-    let cardName = "";
     const today = new Date();
 
     // Extract Header Info (Rows 0-10)
@@ -172,13 +172,17 @@ async function downloadStatement() {
   // Return the data and the file as base64 so the iPhone can save it
   const fileBuffer = fs.readFileSync(localPath);
   const base64File = fileBuffer.toString('base64');
+  const fileName = download.suggestedFilename();
+
+  // Cleanup: Delete the local file after reading it
+  fs.unlinkSync(localPath);
 
   return {
     success: true,
     card: cardName || "UOB EVOL",
     count: transactions.length,
     transactions: transactions,
-    fileName: download.suggestedFilename(),
+    fileName: fileName,
     fileData: base64File
   };
 }
