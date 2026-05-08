@@ -36,11 +36,20 @@ app.listen(port, () => {
 
 async function downloadStatement() {
   console.log("Starting Playwright...");
-  // headless: false allows you to see the browser window
-  // slowMo: 500 adds a slight delay so you can follow the actions
+  // headless: true is mandatory for Railway
+  // args: specific flags required to run Chromium in a Linux container
   const browser = await chromium.launch({ 
     headless: true, 
-    slowMo: 500 
+    slowMo: 0, 
+    args: [
+      '--no-sandbox', 
+      '--disable-setuid-sandbox', 
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--single-process'
+    ]
   });
   const context = await browser.newContext();
   const page = await context.newPage();
