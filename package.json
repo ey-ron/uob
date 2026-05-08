@@ -1,0 +1,18 @@
+{
+  "name": "uob-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "playwright": "^1.59.1",
+    "xlsx": "^0.18.5"
+  }
+}
