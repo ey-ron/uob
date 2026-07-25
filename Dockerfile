@@ -1,18 +1,17 @@
-# Use the official Playwright image which includes all OS dependencies
+# Use official Playwright base image matching v1.59.1
 FROM mcr.microsoft.com/playwright:v1.59.1-jammy
 
-# Set the working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy package files and install dependencies
+# Copy package files first
 COPY package*.json ./
-RUN npm install
 
-# Copy the rest of your application code
+# Install production dependencies
+RUN npm ci --only=production
+
+# Copy application source code
 COPY . .
 
-# Expose the port your Express server uses
-EXPOSE 3000
+EXPOSE 8080
 
-# Start the application
-CMD ["node", "index.js"]
+CMD [ "node", "index.js" ]
