@@ -2,3 +2,8 @@ node_modules
 npm-debug.log
 .git
 .env
+*.xls
+*.xlsx
+*.csv
+.DS_Store
+playwright/.cache
