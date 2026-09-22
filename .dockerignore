@@ -5,5 +5,9 @@ npm-debug.log
 *.xls
 *.xlsx
 *.csv
+*.pdf
+downloads/
+*.png
+navigation_log.json
 .DS_Store
 playwright/.cache

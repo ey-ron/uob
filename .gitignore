@@ -10,16 +10,36 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Local Banking Data (Sensitive statements)
+# IDE / Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local Banking Data (Sensitive statements & spreadsheets)
 *.xls
 *.xlsx
 *.csv
+*.pdf
+downloads/
 
-# Playwright artifacts
+# Playwright artifacts & debug captures
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.mp4
+*.webm
+navigation_log.json
 test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+
+# Local testing & debug helper scripts
+test-*.js
+record-*.js
+scratch/
 
 # Logs
 npm-debug.log*
